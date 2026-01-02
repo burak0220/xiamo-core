@@ -2,13 +2,12 @@ package mobile
 
 import "fmt"
 
-// StartMining initiates the Xiamo blockchain engine.
-// Note: Function name starts with a Capital Letter to be visible to Android.
-func StartMining() string {
-	return "Xiamo Engine: Mining Started"
+// StartEngine starts the blockchain mining process
+func StartEngine() string {
+	return "Xiamo Blockchain Engine: Operational"
 }
 
-// GetStatus returns the current connection status.
-func GetStatus() string {
-	return "Node Status: Online & Synced"
+// GetBlockHeight is a placeholder for blockchain height
+func GetBlockHeight() int {
+	return 1
 }
