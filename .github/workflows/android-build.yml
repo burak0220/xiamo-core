@@ -1,30 +1,29 @@
-name: Xiamo Build System
+name: Xiamo_Blockchain_Build
 on: [push]
 jobs:
-  build_android:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Setup Go Environment
-        uses: actions/setup-go@v4
+      - name: Setup Go
+        uses: actions/setup-go@v5
         with:
           go-version: '1.21'
-          cache: false
 
-      - name: Install Dependencies
+      - name: Fix Android NDK
+        # NDK yolunu GitHub'ın güncel sistemine göre zorla tanımlıyoruz
         run: |
-          # Downloads missing dependencies automatically
-          go mod tidy
-          go get golang.org/x/mobile/bind
+          echo "ANDROID_NDK_HOME=$ANDROID_SDK_ROOT/ndk-bundle" >> $GITHUB_ENV
 
-      - name: Setup Gomobile
+      - name: Install Tools
         run: |
           go install golang.org/x/mobile/cmd/gomobile@latest
           gomobile init
+          go mod tidy
 
-      - name: Build Android Archive (AAR)
+      - name: Build Android Library
         run: |
-          # Target Android API 21 (Required by GitHub Actions)
+          # Hem API hatasını hem de yol hatasını çözen ana komut
           gomobile bind -v -target=android -androidapi 21 ./mobile
