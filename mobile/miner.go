@@ -1,9 +1,3 @@
 package mobile
 
-func StartMining() string {
-	return "Xiamo Mobile Engine: Active"
-}
-
-func GetStatus() string {
-	return "Status: Online"
-}
+func Start() string { return "Xiamo Active" }
