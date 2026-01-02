@@ -1,28 +1,30 @@
-name: Xiamo_Build
+name: Xiamo Build System
 on: [push]
 jobs:
-  build:
+  build_android:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout Code
+        uses: actions/checkout@v3
 
-      - name: Setup Go
+      - name: Setup Go Environment
         uses: actions/setup-go@v4
         with:
           go-version: '1.21'
+          cache: false
 
-      - name: Prepare Mobile Module
+      - name: Install Dependencies
         run: |
-          cd mobile
-          go mod init github.com/burak0220/xiamo-core/mobile || true
+          # Downloads missing dependencies automatically
           go mod tidy
+          go get golang.org/x/mobile/bind
 
-      - name: Install Gomobile
+      - name: Setup Gomobile
         run: |
           go install golang.org/x/mobile/cmd/gomobile@latest
           gomobile init
 
-      # İŞTE ÇÖZÜM BURADA: "-androidapi 21" EKLENDİ
-      - name: Build Android Library
+      - name: Build Android Archive (AAR)
         run: |
+          # Target Android API 21 (Required by GitHub Actions)
           gomobile bind -v -target=android -androidapi 21 ./mobile
