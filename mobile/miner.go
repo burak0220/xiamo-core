@@ -4,12 +4,12 @@ import (
 	"fmt"
 )
 
-// StartMiningSession: Android butonu buna basacak
+// StartMiningSession: Android button trigger
 func StartMiningSession() string {
-	return "Mining Started on Mobile ARM..."
+	return "Mining Started on Mobile ARM"
 }
 
-// GetStatus: Uygulama ekranında görünecek durum
+// GetStatus: Display status on app screen
 func GetStatus() string {
-	return "Xiamo Node: Online"
+	return "Xiamo Node Online"
 }
