@@ -1,6 +1,6 @@
 package core
 
-import (
+import "github.com/burak0220/xiamo-core/network"
 	"fmt"
 	"net"
 )
