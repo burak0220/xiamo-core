@@ -25,4 +25,4 @@ jobs:
 
       - name: Build Android Library
         run: |
-          gomobile bind -v -target=android ./mobile
+          gomobile bind -v -target=android -androidapi 21 ./mobile
