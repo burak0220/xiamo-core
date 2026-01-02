@@ -1,13 +1,9 @@
 package mobile
 
-import (
-	"fmt"
-)
-
 func StartMining() string {
-	return "Xiamo Engine: Mining Started"
+	return "Xiamo Mobile Engine: Active"
 }
 
 func GetStatus() string {
-	return "Xiamo Node: Online"
+	return "Status: Online"
 }
