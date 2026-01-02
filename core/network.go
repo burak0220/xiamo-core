@@ -14,15 +14,13 @@ type XiamoNode struct {
 
 // StartP2P initializes the mobile mesh network
 func StartP2P(port string) {
-	fmt.Printf("Xiamo P2P Layer starting on port %s...\n", port)
-	fmt.Println("Searching for other mobile nodes via Discovery...")
+	fmt.Printf("[P2P] Starting Xiamo Network Layer on port %s...\n", port)
 	
-	// Bu kısım diğer telefonların IP adreslerini bulacak
 	ln, err := net.Listen("tcp", ":"+port)
 	if err != nil {
-		fmt.Println("Error starting network:", err)
+		fmt.Printf("[ERROR] Network initialization failed: %v\n", err)
 		return
 	}
-	fmt.Println("Node is now ONLINE and discoverable.")
+	fmt.Println("[P2P] Node is now listening for inbound connections.")
 	_ = ln
 }
