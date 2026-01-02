@@ -10,7 +10,6 @@ jobs:
         uses: actions/setup-go@v4
         with:
           go-version: '1.21'
-          cache: false
 
       - name: Prepare Mobile Module
         run: |
@@ -23,6 +22,7 @@ jobs:
           go install golang.org/x/mobile/cmd/gomobile@latest
           gomobile init
 
+      # İŞTE ÇÖZÜM BURADA: "-androidapi 21" EKLENDİ
       - name: Build Android Library
         run: |
           gomobile bind -v -target=android -androidapi 21 ./mobile
