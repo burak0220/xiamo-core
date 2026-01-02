@@ -1,4 +1,4 @@
-module github.com/burak0220/xiamo-core
+module xiamo
 
 go 1.21
 
