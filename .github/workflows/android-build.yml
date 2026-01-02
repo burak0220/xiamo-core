@@ -5,14 +5,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
       - name: Setup Go
         uses: actions/setup-go@v4
         with:
           go-version: '1.21'
           cache: false
-      - name: Build
+
+      - name: Prepare Mobile Module
+        run: |
+          cd mobile
+          go mod init github.com/burak0220/xiamo-core/mobile || true
+          go mod tidy
+
+      - name: Install Gomobile
         run: |
           go install golang.org/x/mobile/cmd/gomobile@latest
           gomobile init
-          go mod tidy
+
+      - name: Build Android Library
+        run: |
           gomobile bind -v -target=android ./mobile
